@@ -3,8 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <style>
+        .qr-code
+        {
+          position: relative;
+          top: 0;
+          left: 0;
+        }
+        .logo
+        {
+            position: absolute;
+    top: 90px;
+    left: 107px;
+    height: 90px;
+    width: 90px;
+        }
+      </style>
 </head>
 <body>
-    <img src=<%=src%> alt="">
+    
+<canvas id="canvas"></canvas>
+<script type="text/javascript">
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var img1 = new Image();
+var img2 = new Image();
+
+img1.onload = function() {
+    canvas.width = img1.width;
+    canvas.height = img1.height;
+    img2.src = 'takshak-logo.png';
+};
+img2.onload = function() {
+    context.globalAlpha = 1.0;
+    // context.drawImage(<%=src%>, 0, 0);
+    context.globalAlpha = 0.5; //Remove if pngs have alpha
+    context.drawImage(img2, 0, 0);
+};        
+
+img1.src = "%=src%";
+    </script>
+    <!-- <div style="position: relative; left: 0; top: 0;">
+    <img class="qr-code image" height="300" width="300"src=<%=src%> alt="">
+    <img src="takshak-logo.png" class='logo image' height="50" width="50">
+    <canvas class="result"></canvas>
+    <script>
+        let imgEle1 = document.querySelectorAll(".image")[0];
+    let imgEle2 = document.querySelectorAll(".image")[1];
+    let resEle = document.querySelector(".result");
+    var context = resEle.getContext("2d");
+    resEle.width = imgEle1.width;
+      resEle.height = imgEle1.height;
+      context.globalAlpha = 1.0;
+      context.drawImage(imgEle1, 0, 0);
+    //   context.globalAlpha = 1.0;
+      context.drawImage(imgEle2, 60, 60); -->
+   
+    
+</div>
 </body>
 </html>
